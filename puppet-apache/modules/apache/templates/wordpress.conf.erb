@@ -1,9 +1,16 @@
 <VirtualHost *:80>
   ServerAdmin webmaster@localhost
-  DocumentRoot <%= @document_root %>
+  DocumentRoot <%= @install_dir %>>
 
-  <Directory <%= @document_root %>>
-    Require all granted
+  <Directory <%= @install_dir %>>
+      Options FollowSymLinks
+      AllowOverride Limit Options FileInfo
+      DirectoryIndex index.php
+      Require all granted
+  </Directory>
+  <Directory <%= @wp_content %>>
+        Options FollowSymLinks
+        Require all granted
   </Directory>
 
   ErrorLog ${APACHE_LOG_DIR}/error.log

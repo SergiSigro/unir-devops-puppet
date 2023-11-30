@@ -1,4 +1,11 @@
+$username = 'root'
+$dbname = 'wordpress'
+$dbuser = 'wordpress'
 $document_root = '/my-first-blog'
+$base_site = '/var/www/html'
+$wp_admin = 'wp_admin'
+$password = 'admin123'
+
 
 
 notify { 'Message Box':
@@ -11,14 +18,11 @@ notify { 'Message Box':
 "
 }
 
-
+include apache
+include php
+include mysql
 include wordpress
-
-# exec { 'Skip Message':
-#   command => "echo 'Este mensaje sólo se muestra si no se ha copiado el fichero index.html'",
-#   unless => "test -f ${document_root}/index.html",
-#   path => "/bin:/sbin:/usr/bin:/usr/sbin",
-# }
+include wordpresscli
 
 $ipv4_address = $facts['networking']['ip']
 notify { 'Showing machine Facts':

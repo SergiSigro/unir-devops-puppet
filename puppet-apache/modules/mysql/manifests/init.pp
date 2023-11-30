@@ -25,14 +25,8 @@ class mysql{
     require => Exec['set-pass']
   }
 
-  exec {'run-query':
-    command => "/usr/bin/mysql -h localhost -u ${username} -D mysql < ${document_root}/create-db.sql",
-    require => File['mv-file']
-  }
-
   notify{'Mysql-installed':
     message => "MySQL installed!",
-    require => Exec['run-query']
   }
 
 

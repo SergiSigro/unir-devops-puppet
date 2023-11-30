@@ -1,6 +1,6 @@
 class wordpresscli{
   file {'set-commands':
-    path => "/user/local/bin/wp",
+    path => "/usr/local/bin/wp",
     ensure => present,
     source => 'puppet:///modules/wordpresscli/wp-cli.phar',
     require => Exec['move-WordPress'],
@@ -8,9 +8,10 @@ class wordpresscli{
   }
 
   exec{'config-wordpress':
-    command => "/usr/local/bin/wp core install --locale=es_SV --title='Mi primera actividad UNIR' --admin=${wp_admin} --admin_password=${password} --admin_email=sergi.sigro@gmail.com --allow-root --path='${base_site}'",
-    require => File['set-commands'],
-    notify  => Service['apache2'] 
+      command => "/usr/local/bin/wp core install --url='http://localhost' --title='Mi primera actividad UNIR' --admin_user='${wp_admin}' --admin_password='${password}' --admin_email=sergi.sigro@gmail.com --allow-root --path='${base_site}'",
+      require => File['set-commands'],
+      notify  => Service['apache2'],
   }
+
 
 }

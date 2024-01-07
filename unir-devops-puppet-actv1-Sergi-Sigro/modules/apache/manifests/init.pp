@@ -24,6 +24,6 @@ class apache {
     ensure    => running,
     enable    => true,
   }
-  
+
 }
 

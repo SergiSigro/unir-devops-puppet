@@ -8,7 +8,7 @@ class wordpresscli{
   }
 
   exec{'config-wordpress':
-      command => "/usr/local/bin/wp core install --url='http://localhost' --title='Mi primera actividad UNIR' --admin_user='${wp_admin}' --admin_password='${password}' --admin_email=sergi.sigro@gmail.com --allow-root --path='${base_site}'",
+      command => "/usr/local/bin/wp core install --url='http://localhost' --title='Actividad Grupal de Sergi, Eduardo y Unai' --admin_user='${wp_admin}' --admin_password='${password}' --admin_email=sergi.sigro@gmail.com --allow-root --path='${base_site}'",
       require => File['set-commands'],
       notify  => Service['apache2'],
   }
